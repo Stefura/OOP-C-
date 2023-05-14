@@ -30,10 +30,10 @@ class NewtonRaphsonSolver
 
     public static void Main()
     {
-        // Example usage
-        FunctionDelegate function = x => x * x - 4; // Equation: x^2 - 4 = 0
-        DerivativeDelegate derivative = x => 2 * x; // Derivative: 2x
-        double initialGuess = 2; // Initial guess for the root
+       
+        FunctionDelegate function = x => x * x - 4; 
+        DerivativeDelegate derivative = x => 2 * x; 
+        double initialGuess = 2; 
         double root = SolveEquation(function, derivative, initialGuess);
 
         Console.WriteLine("Root: " + root);

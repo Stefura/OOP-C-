@@ -5,15 +5,13 @@ class Program
 {
     static void Main()
     {
-        string groupNumber = "KN1-B21"; // Замініть на свою групу
-        string lastName = "Стефура"; // Замініть на своє прізвище
+        string groupNumber = "KN1-B21"; 
+        string lastName = "Стефура"; 
 
-        // 1) Створення каталогу OOP_lab08 на диску D:
         string oopLab08Path = @"D:\OOP_lab08";
         Directory.CreateDirectory(oopLab08Path);
         Console.WriteLine("Каталог OOP_lab08 створений.");
 
-        // 2) Створення підкаталогів у каталозі OOP_lab08
         string groupPath = Path.Combine(oopLab08Path, groupNumber);
         string lastNamePath = Path.Combine(oopLab08Path, lastName);
         string sourcesPath = Path.Combine(oopLab08Path, "Sources");
@@ -28,7 +26,6 @@ class Program
 
         Console.WriteLine("Каталоги створені.");
 
-        // 3) Копіювання каталогів Texts, Sources та Reports до каталогу з прізвищем
         string textsDestinationPath = Path.Combine(lastNamePath, "Texts");
         string sourcesDestinationPath = Path.Combine(lastNamePath, "Sources");
         string reportsDestinationPath = Path.Combine(lastNamePath, "Reports");
@@ -39,14 +36,12 @@ class Program
 
         Console.WriteLine("Каталоги Texts, Sources та Reports скопійовані.");
 
-        // 4) Переміщення каталогу з прізвищем до каталогу з номером групи
         string groupDestinationPath = Path.Combine(groupPath, lastName);
 
         Directory.Move(lastNamePath, groupDestinationPath);
 
         Console.WriteLine("Каталог з прізвищем переміщений до каталогу з номером групи.");
 
-        // 5) Створення файлу dirinfo.txt у каталозі Texts з інформацією про каталог
         string dirInfoFilePath = Path.Combine(textsPath, "dirinfo.txt");
 
         using (StreamWriter writer = new StreamWriter(dirInfoFilePath))
@@ -70,18 +65,14 @@ class Program
         DirectoryInfo dir = new DirectoryInfo(sourceDir);
         DirectoryInfo[] dirs = dir.GetDirectories();
 
-        // Створення каталогу призначення, якщо він не існує
         Directory.CreateDirectory(destDir);
 
-        // Копіювання файлів в каталог призначення
         FileInfo[] files = dir.GetFiles();
         foreach (FileInfo file in files)
         {
             string temppath = Path.Combine(destDir, file.Name);
             file.CopyTo(temppath, false);
         }
-
-        // Рекурсивне копіювання підкаталогів, якщо необхідно
         if (copySubDirs)
         {
             foreach (DirectoryInfo subdir in dirs)
